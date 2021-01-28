@@ -2,14 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Player script for all various user interactions with it
 public class PlayerScript : MonoBehaviour
 {
     #region Variables
+    
+    /// <summary>
+    /// Should the object move forward
+    /// </summary>
+    public bool DoesMove;
 
     /// <summary>
-    /// Player speed
+    /// Player movement speed in forward direction
     /// </summary>
-    public float Speed;
+    public float ForwardSpeed;
+
+    /// <summary>
+    /// Player movement speed in left and right direction
+    /// </summary>
+    public float StrafeSpeed;
+
     /// <summary>
     /// Player's rigidbody
     /// </summary>
@@ -42,7 +54,16 @@ public class PlayerScript : MonoBehaviour
     /// <param name="horizontalInput">Player horizontal input</param>
     private void PlayerMoveControl(float horizontalInput)
     {
-        _playerRigidbody.AddForce(Vector3.right * horizontalInput * Speed, ForceMode.Impulse);
+        // We check if the object should move.
+        // It will come in handy, when we reach the finish or wait 
+        // for the user to press "Start" or "Next level"
+        if ( DoesMove == true )
+        {
+            // Forward movement
+            _playerRigidbody.AddRelativeForce(Vector3.forward * ForwardSpeed, ForceMode.Impulse);
+            // Allows us to move left and right
+            _playerRigidbody.AddRelativeForce(Vector3.right * horizontalInput * StrafeSpeed, ForceMode.Impulse);
+        }
     }
 
     #endregion
