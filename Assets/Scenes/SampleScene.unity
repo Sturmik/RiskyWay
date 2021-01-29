@@ -150,13 +150,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085001f6d898ede448e8571051a19e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartRoadPrefab: {fileID: 2654958723354000851, guid: 168a8575c844c264c981462d259f821f,
+  StartRoadPrefab: {fileID: 4332106801098653796, guid: 49ca7718f39ce314881f69ef55b53586,
     type: 3}
-  RoadPrefabsPool:
-  - {fileID: 2654958723354000851, guid: 168a8575c844c264c981462d259f821f, type: 3}
+  TurnPrefabsList:
   - {fileID: 5913980271585750727, guid: 45941e4d23e9ce446b7f34f1053f5beb, type: 3}
   - {fileID: 2472617418631288813, guid: d36a80a91e71cc842a05d50e647c2e58, type: 3}
-  FinishRoadPrefab: {fileID: 2654958723354000851, guid: 168a8575c844c264c981462d259f821f,
+  RoadPrefabsList:
+  - {fileID: 2654958723354000851, guid: 168a8575c844c264c981462d259f821f, type: 3}
+  FinishRoadPrefab: {fileID: 9194615114058306030, guid: 9e9c60af8916dda4fbfe172c8fe7a654,
     type: 3}
 --- !u!4 &109305823
 Transform:
@@ -206,7 +207,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -286,6 +287,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mass
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2941328804724191000, guid: 75b947091f73093498b750046d956d20,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3672534365513208012, guid: 75b947091f73093498b750046d956d20,
         type: 3}

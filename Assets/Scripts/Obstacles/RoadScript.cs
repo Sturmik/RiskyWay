@@ -9,8 +9,9 @@ using UnityEngine;
 public enum RoadTypes
 {
     Start,
-    Road,
-    Turn,
+    Straight,
+    TurnLeft,
+    TurnRight,
     Finish
 }
 
@@ -55,27 +56,7 @@ public class RoadScript : MonoBehaviour
         {
             return transform.Find("RoadSettings" + "/" + "Joint").transform.rotation;
         }
-    }
-
-    /// <summary>
-    /// Degrees of the road rotation
-    /// </summary>
-    //public float RoadTurnDegree
-    //{ 
-    //    get
-    //    {
-    //        switch(RoadType)
-    //        {
-    //            case RoadTypes.TurnLeft:
-    //                return -90;
-    //            case RoadTypes.TurnRight:
-    //                return 90;
-    //            default:
-    //                return 0;
-    //        }
-    //    }
-    //}
-      
+    }  
 
     #endregion
 

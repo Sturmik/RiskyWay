@@ -61,7 +61,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1 &3820114771952790646
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,12 +215,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 945e8fa3fa48540448f8808c2ed3eb60,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.4
+      value: 4.401
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 945e8fa3fa48540448f8808c2ed3eb60,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 945e8fa3fa48540448f8808c2ed3eb60,
         type: 3}
