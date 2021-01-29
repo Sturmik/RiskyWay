@@ -220,7 +220,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 945e8fa3fa48540448f8808c2ed3eb60,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 945e8fa3fa48540448f8808c2ed3eb60,
         type: 3}
@@ -328,6 +328,17 @@ PrefabInstance:
       value: Road
       objectReference: {fileID: 0}
     - target: {fileID: 3295687749346592177, guid: 945e8fa3fa48540448f8808c2ed3eb60,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3295687749346592177, guid: 945e8fa3fa48540448f8808c2ed3eb60,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: eb77c9d4a147d20478edf3fe77db2807,
+        type: 2}
+    - target: {fileID: 7903025975266461838, guid: 945e8fa3fa48540448f8808c2ed3eb60,
         type: 3}
       propertyPath: m_Material
       value: 
