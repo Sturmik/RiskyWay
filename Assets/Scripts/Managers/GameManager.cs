@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
     #endregion
 
     /// <summary>
+    /// Player prefab
+    /// </summary>
+    public GameObject PlayerPrefab;
+    /// <summary>
     /// Start of the road
     /// </summary>
     public GameObject StartRoadPrefab;
@@ -54,8 +58,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Variables initialization
-        Instance = this;
+       // Variables initialization
+       Instance = this;
         _recentLevelRoads = new List<GameObject>();
         GenerateLevel(250);
     }
@@ -87,7 +91,12 @@ public class GameManager : MonoBehaviour
         // Clearing previous objects
         _recentLevelRoads.Clear();
         // Temporary variable for working with gameobjects
-        GameObject recentRoad = Instantiate(StartRoadPrefab) as GameObject;
+        GameObject recentRoad;
+        // Spawning object with help of the pool
+        recentRoad = ObjectPoolManager.Instance.SpawnObject(StartRoadPrefab);
+        // Moving player on the start road
+        PlayerPrefab.transform.position = StartRoadPrefab.transform.position + Vector3.up * 2;
+        PlayerPrefab.transform.rotation = StartRoadPrefab.transform.rotation;
         // Adding start
         _recentLevelRoads.Add(recentRoad);
         // List of turns for creating correct way
@@ -133,8 +142,7 @@ public class GameManager : MonoBehaviour
                         }
                     }
                     // Spawning chosen turn
-                    recentRoad =
-                        Instantiate(TurnPrefabsList[randomIndex]) as GameObject;
+                    recentRoad = ObjectPoolManager.Instance.SpawnObject(TurnPrefabsList[randomIndex]);
                     // Adding element to temp list
                     turnCheckList.Add(TurnPrefabsList[randomIndex] as GameObject);
                     break;
@@ -142,8 +150,7 @@ public class GameManager : MonoBehaviour
                 case false:
                     randomIndex = Random.Range(0, RoadPrefabsList.Count);
                     // Choosing random road for spawn
-                    recentRoad =
-                        Instantiate(RoadPrefabsList[randomIndex]) as GameObject;
+                    recentRoad = ObjectPoolManager.Instance.SpawnObject(RoadPrefabsList[randomIndex]) as GameObject;
                     break;
             }
             // Getting position of the previous road joint to adjust our recent road to it
