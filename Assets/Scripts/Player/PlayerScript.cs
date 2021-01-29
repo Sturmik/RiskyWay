@@ -50,7 +50,7 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         // Initializing variables
-        _turnSpeedMultiplicator = 220;
+        _turnSpeedMultiplicator = 210;
         _turnToPoint = transform.rotation;
         DoesMove = true;
         // Getting components
