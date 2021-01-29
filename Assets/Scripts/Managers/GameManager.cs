@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         // Variables initialization
         Instance = this;
         _recentLevelRoads = new List<GameObject>();
-        GenerateLevel(10);
+        GenerateLevel(25);
     }
 
     // Update is called once per frame

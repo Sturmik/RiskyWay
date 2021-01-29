@@ -150,14 +150,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085001f6d898ede448e8571051a19e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartRoadPrefab: {fileID: 6514804307135719781, guid: d3734ec594c322947b3ec2e42cff64d8,
+  StartRoadPrefab: {fileID: 2654958723354000851, guid: 168a8575c844c264c981462d259f821f,
     type: 3}
   RoadPrefabsPool:
   - {fileID: 2654958723354000851, guid: 168a8575c844c264c981462d259f821f, type: 3}
-  - {fileID: 6514804307135719781, guid: d3734ec594c322947b3ec2e42cff64d8, type: 3}
-  - {fileID: 2039314179458991503, guid: b3f054b85edde7742a7315147e865094, type: 3}
   - {fileID: 5913980271585750727, guid: 45941e4d23e9ce446b7f34f1053f5beb, type: 3}
-  FinishRoadPrefab: {fileID: 2039314179458991503, guid: b3f054b85edde7742a7315147e865094,
+  - {fileID: 2472617418631288813, guid: d36a80a91e71cc842a05d50e647c2e58, type: 3}
+  FinishRoadPrefab: {fileID: 2654958723354000851, guid: 168a8575c844c264c981462d259f821f,
     type: 3}
 --- !u!4 &109305823
 Transform:
@@ -167,7 +166,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109305821}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.947199, y: 16.482458, z: -4.8854637}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -371,7 +370,7 @@ PrefabInstance:
     - target: {fileID: 7717408860819202828, guid: 75b947091f73093498b750046d956d20,
         type: 3}
       propertyPath: ForwardSpeed
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75b947091f73093498b750046d956d20, type: 3}
@@ -452,7 +451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.043577887, y: -0.043577887, z: 0.0019026523, w: 0.99809736}
-  m_LocalPosition: {x: 6, y: 2, z: -10}
+  m_LocalPosition: {x: 6, y: 4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 660080895}

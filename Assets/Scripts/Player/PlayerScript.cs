@@ -8,9 +8,9 @@ public class PlayerScript : MonoBehaviour
     #region Variables
     
     /// <summary>
-    /// Should the object move forward
+    /// Should the player move forward
     /// </summary>
-    public bool DoesMove;
+    public bool DoesMove { get; set; }
 
     /// <summary>
     /// Player movement speed in forward direction
@@ -21,6 +21,21 @@ public class PlayerScript : MonoBehaviour
     /// Player movement speed in left and right direction
     /// </summary>
     public float StrafeSpeed;
+
+    /// <summary>
+    /// Player turning speed multiplicator
+    /// </summary>
+    private float _turnSpeedMultiplicator;
+
+    /// <summary>
+    /// Position of the point to which player should rotate
+    /// </summary>
+    private Vector3 _pointPosition;
+
+    /// <summary>
+    /// Point to which player should rotate
+    /// </summary>
+    private Quaternion _turnToPoint;
 
     /// <summary>
     /// Player's rigidbody
@@ -34,6 +49,10 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Initializing variables
+        _turnSpeedMultiplicator = 220;
+        _turnToPoint = transform.rotation;
+        DoesMove = true;
         // Getting components
         _playerRigidbody = this.GetComponent<Rigidbody>();
     }
@@ -54,6 +73,18 @@ public class PlayerScript : MonoBehaviour
     /// <param name="horizontalInput">Player horizontal input</param>
     private void PlayerMoveControl(float horizontalInput)
     {
+        // We check if the object should rotate
+        // This helps us then we need to take turn
+        if (transform.rotation != _turnToPoint)
+        {
+            // Closer we are to target point, the faster the rotation will execute
+            transform.rotation =
+                Quaternion.RotateTowards(transform.rotation, _turnToPoint,
+                ForwardSpeed * (_turnSpeedMultiplicator / Vector3.Distance(transform.position, _pointPosition)) * Time.deltaTime);
+            // We are blocking user strafe while, he is turning
+            horizontalInput = 0;
+        }
+
         // We check if the object should move.
         // It will come in handy, when we reach the finish or wait 
         // for the user to press "Start" or "Next level"
@@ -64,6 +95,17 @@ public class PlayerScript : MonoBehaviour
             // Allows us to move left and right
             _playerRigidbody.AddRelativeForce(Vector3.right * horizontalInput * StrafeSpeed, ForceMode.Impulse);
         }
+    }
+
+    /// <summary>
+    /// Sets new point for our player to rotate to
+    /// </summary>
+    /// <param name="pointPos">Point to which player will move</param> 
+    /// <param name="pointQuat">Point to which player will rotate</param>
+    public void SetTurnPoint(Vector3 pointPos, Quaternion pointQuat)
+    {
+        _pointPosition = pointPos;
+        _turnToPoint = pointQuat;
     }
 
     #endregion
