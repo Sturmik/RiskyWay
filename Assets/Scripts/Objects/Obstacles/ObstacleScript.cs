@@ -21,7 +21,7 @@ public interface IHittable
     /// <summary>
     /// Reaction of the object to being hitten
     /// </summary>
-    void Hit(Collision hittenBy);
+    void Hit(GameObject hittenBy);
 }
 
 /// <summary>
@@ -38,6 +38,20 @@ public abstract class ObstacleScript : MonoBehaviour, IHittable
     #region Unity
 
     /// <summary>
+    /// Trigger enter
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerEnter(Collider trigger)
+    {
+        // If it was the player, who hit the object
+        if (trigger.gameObject.tag == "Player")
+        {
+            // Do this
+            Hit(trigger.gameObject);
+        }
+    }
+
+    /// <summary>
     /// Collision check
     /// </summary>
     private void OnCollisionEnter(Collision collision)
@@ -46,7 +60,7 @@ public abstract class ObstacleScript : MonoBehaviour, IHittable
         if (collision.gameObject.tag == "Player")
         {
             // Do this
-            Hit(collision);
+            Hit(collision.gameObject);
         }
     }
 
@@ -57,7 +71,7 @@ public abstract class ObstacleScript : MonoBehaviour, IHittable
     /// <summary>
     /// Virtual method for override
     /// </summary>
-    public virtual void Hit(Collision hittenBy)
+    public virtual void Hit(GameObject hittenBy)
     {
         // Action here
     }

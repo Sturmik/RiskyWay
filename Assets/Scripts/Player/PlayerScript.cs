@@ -11,9 +11,13 @@ public class PlayerScript : MonoBehaviour
     #region СharacteristicVariables
 
     /// <summary>
-    /// How much time player will be in after hit condition
+    /// How much time player will not move after hit condition
     /// </summary>
-    public int AfterHitTimeout;
+    public int AfterHitMoveTimeout;
+    /// <summary>
+    /// How much time player will be invincible after hit condition
+    /// </summary>
+    public int AfterHitInvincibleTimeout;
 
     // Player's material component
     private Material _materialComponent;
@@ -33,7 +37,7 @@ public class PlayerScript : MonoBehaviour
             switch(IsInvincible)
             {
                 case true:
-                    Color newColor = new Color(_baseColor.r, _baseColor.g, _baseColor.b, 1f);
+                    Color newColor = new Color(_baseColor.r, _baseColor.g, _baseColor.b, 0.9f);
                     _materialComponent.SetColor("_Color", newColor);
                     break;
                 case false:
@@ -180,8 +184,8 @@ public class PlayerScript : MonoBehaviour
         // Jumps back
         _playerRigidbody.AddRelativeForce((Vector3.back + Vector3.up / 3) * ForwardSpeed * 25, ForceMode.Impulse);
         // Giving player control back after some time
-        Invoke(nameof(StartMovement), AfterHitTimeout - 1);
-        Invoke(nameof(DisableInvincibility), AfterHitTimeout);
+        Invoke(nameof(StartMovement), AfterHitMoveTimeout);
+        Invoke(nameof(DisableInvincibility), AfterHitInvincibleTimeout);
     }
 
     /// <summary>
@@ -214,10 +218,16 @@ public class PlayerScript : MonoBehaviour
         // Setting new hp
         Health += newHp;
         // If impact pushes player
-        if ( impactType == ObstacleReactionTypes.Push )
+        switch( impactType  )
         {
-            // Do this
-           AfterHitMove();
+            case ObstacleReactionTypes.Push:
+                // Do this
+                AfterHitMove();
+                break;
+            case ObstacleReactionTypes.NoPush:
+                IsInvincible = true;
+                Invoke(nameof(DisableInvincibility), AfterHitInvincibleTimeout);
+                break;
         }
     }
 

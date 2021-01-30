@@ -157,7 +157,9 @@ MonoBehaviour:
   - {fileID: 5913980271585750727, guid: 45941e4d23e9ce446b7f34f1053f5beb, type: 3}
   - {fileID: 2472617418631288813, guid: d36a80a91e71cc842a05d50e647c2e58, type: 3}
   RoadPrefabsList:
-  - {fileID: 2654958723354000851, guid: 168a8575c844c264c981462d259f821f, type: 3}
+  - {fileID: 1478891081033766277, guid: 887a39d7af2a7bc41b57e9411926d239, type: 3}
+  - {fileID: 592795679089004682, guid: 747670af581f0a34a8ecef3d0a840805, type: 3}
+  - {fileID: 2609378610360260068, guid: 28f777b9eb485c2489dfef00803c21ad, type: 3}
   FinishRoadPrefab: {fileID: 3160113922471831447, guid: 9e9c60af8916dda4fbfe172c8fe7a654,
     type: 3}
 --- !u!4 &109305823
@@ -254,7 +256,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 1
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -310,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -427,6 +429,21 @@ PrefabInstance:
     - target: {fileID: 7717408860819202828, guid: 75b947091f73093498b750046d956d20,
         type: 3}
       propertyPath: ForwardSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717408860819202828, guid: 75b947091f73093498b750046d956d20,
+        type: 3}
+      propertyPath: AfterHitTimeout
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717408860819202828, guid: 75b947091f73093498b750046d956d20,
+        type: 3}
+      propertyPath: AfterHitMoveTimeout
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717408860819202828, guid: 75b947091f73093498b750046d956d20,
+        type: 3}
+      propertyPath: AfterHitInvincibleTimeout
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
