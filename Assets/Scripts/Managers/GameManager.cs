@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    #region PrefabsAndLevelGenerator
+
     /// <summary>
     /// Player prefab
     /// </summary>
@@ -53,7 +55,9 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    #region UnityStartUpdate
+    #endregion
+
+    #region Unity
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +65,7 @@ public class GameManager : MonoBehaviour
        // Variables initialization
        Instance = this;
         _recentLevelRoads = new List<GameObject>();
-        GenerateLevel(250);
+        GenerateLevel(5);
     }
 
     #endregion
@@ -161,7 +165,7 @@ public class GameManager : MonoBehaviour
             _recentLevelRoads.Add(recentRoad);
         }
         // Adding finish
-        recentRoad = Instantiate(FinishRoadPrefab) as GameObject;
+        recentRoad = ObjectPoolManager.Instance.SpawnObject(FinishRoadPrefab) as GameObject;
         // Getting position of the previous road to joint to adjust our recent road to it
         recentRoad.transform.position = _recentLevelRoads[_recentLevelRoads.Count - 1].GetComponent<RoadScript>().JointPosition;
         // Getting rotation  of the previous road joint to adjust our recent road to it
