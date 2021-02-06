@@ -15,6 +15,6 @@ public class DamagingObstacleScript : ObstacleScript
     public override void Hit(GameObject hittenBy)
     {
         // Decreassing hp of player
-        hittenBy.gameObject.GetComponent<PlayerScript>().AddPointsToPlayerHP(-Damage, ObstacleReactionType);
+        hittenBy.gameObject.GetComponent<PlayerScript>().AddPointsToPlayerHP(-Damage, ObstacleReactionType, true);
     }
 }

@@ -13,11 +13,11 @@ public class PlayerScript : MonoBehaviour
     /// <summary>
     /// How much time player will not move after hit condition
     /// </summary>
-    public int AfterHitMoveTimeout;
+    public float AfterHitMoveTimeout;
     /// <summary>
     /// How much time player will be invincible after hit condition
     /// </summary>
-    public int AfterHitInvincibleTimeout;
+    public float AfterHitInvincibleTimeout;
 
     // Player's material component
     private Material _materialComponent;
@@ -174,21 +174,6 @@ public class PlayerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Players hit detection, jumps back
-    /// </summary>
-    private void AfterHitMove()
-    {
-        // Disabling movement, while our knife jumps back
-        DoesMove = false;
-        IsInvincible = true;
-        // Jumps back
-        _playerRigidbody.AddRelativeForce((Vector3.back + Vector3.up / 3) * ForwardSpeed * 25, ForceMode.Impulse);
-        // Giving player control back after some time
-        Invoke(nameof(StartMovement), AfterHitMoveTimeout);
-        Invoke(nameof(DisableInvincibility), AfterHitInvincibleTimeout);
-    }
-
-    /// <summary>
     /// Reverses player's availability to move
     /// </summary>
     /// <param name="canMove"></param>
@@ -211,24 +196,34 @@ public class PlayerScript : MonoBehaviour
     /// </summary>
     /// <param name="newHp">Points to add, can be negative</param>
     /// <param name="impactType">Impact type</param>
-    public void AddPointsToPlayerHP(int newHp, ObstacleReactionTypes impactType)
+    /// <param name="isInvincibleAfterHit">Will be invincible after hit</param>
+    public void AddPointsToPlayerHP(int newHp, ObstacleReactionTypes impactType, bool isInvincibleAfterHit)
     {
         // If player is invincible at the moment ignore collision
         if (IsInvincible) return;
         // Setting new hp
         Health += newHp;
         // If impact pushes player
-        switch( impactType  )
+        AfterHitMove(impactType, isInvincibleAfterHit);
+    }
+
+    /// <summary>
+    /// Players hit detection, jumps back
+    /// </summary>
+    private void AfterHitMove(ObstacleReactionTypes impactType, bool isInvincibleAfterHit)
+    {
+        // Disabling movement, while our knife jumps back
+        DoesMove = false;
+        // Giving player control back after some time
+        Invoke(nameof(StartMovement), AfterHitMoveTimeout);
+        // Checking if player will be invincible after hit or not
+        if (isInvincibleAfterHit)
         {
-            case ObstacleReactionTypes.Push:
-                // Do this
-                AfterHitMove();
-                break;
-            case ObstacleReactionTypes.NoPush:
-                IsInvincible = true;
-                Invoke(nameof(DisableInvincibility), AfterHitInvincibleTimeout);
-                break;
+            IsInvincible = true;
+            Invoke(nameof(DisableInvincibility), AfterHitInvincibleTimeout);
         }
+        // Jumps back
+        _playerRigidbody.AddRelativeForce((Vector3.back + Vector3.up / 3) * ForwardSpeed * 25, ForceMode.Impulse);
     }
 
     #endregion
