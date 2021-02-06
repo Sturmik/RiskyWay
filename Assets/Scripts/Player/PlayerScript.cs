@@ -212,18 +212,22 @@ public class PlayerScript : MonoBehaviour
     /// </summary>
     private void AfterHitMove(ObstacleReactionTypes impactType, bool isInvincibleAfterHit)
     {
-        // Disabling movement, while our knife jumps back
-        DoesMove = false;
-        // Giving player control back after some time
-        Invoke(nameof(StartMovement), AfterHitMoveTimeout);
         // Checking if player will be invincible after hit or not
         if (isInvincibleAfterHit)
         {
             IsInvincible = true;
             Invoke(nameof(DisableInvincibility), AfterHitInvincibleTimeout);
         }
-        // Jumps back
-        _playerRigidbody.AddRelativeForce((Vector3.back + Vector3.up / 3) * ForwardSpeed * 25, ForceMode.Impulse);
+        // Jumps back if impact was from push type
+        if (impactType == ObstacleReactionTypes.Push)
+        {
+            // Disabling movement, while our knife jumps back
+            DoesMove = false;
+            // Giving player control back after some time
+            Invoke(nameof(StartMovement), AfterHitMoveTimeout);
+            // Jumping back
+            _playerRigidbody.AddRelativeForce((Vector3.back + Vector3.up / 3) * ForwardSpeed * 25, ForceMode.Impulse);
+        }
     }
 
     #endregion

@@ -34,6 +34,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public GameObject PlayerPrefab;
     /// <summary>
+    /// How many roads to generate
+    /// </summary>
+    public int RoadQuantToGenerate;
+    /// <summary>
     /// Start of the road
     /// </summary>
     public GameObject StartRoadPrefab;
@@ -45,6 +49,14 @@ public class GameManager : MonoBehaviour
     /// All roads to work with
     /// </summary>
     public List<GameObject> RoadPrefabsList;
+    /// <summary>
+    /// Control point prefab
+    /// </summary>
+    public GameObject ControlPointPrefab;
+    /// <summary>
+    /// Spawns control point after every xth road
+    /// </summary>
+    public int SpawnControlPointAtEvery;
     /// <summary>
     /// End of the road
     /// </summary>
@@ -65,7 +77,7 @@ public class GameManager : MonoBehaviour
        // Variables initialization
        Instance = this;
         _recentLevelRoads = new List<GameObject>();
-        GenerateLevel(5);
+        GenerateLevel(RoadQuantToGenerate);
     }
 
     #endregion
@@ -108,12 +120,18 @@ public class GameManager : MonoBehaviour
         // direction and eventually hit our generated road)
         List<GameObject> turnCheckList = new List<GameObject>();
         // Boolean variable for generating distinctive roads
-        bool isPreviousRoadSame;
+        bool isPreviousTurnTheSame;
         // Variable for containing randomly generated index
         int randomIndex = 0;
         // Adding roads according to given number
         for (int i = 1; i <= numberOfRoads; i++)
         {
+            // Spawns control point after every xth road
+            if (i % SpawnControlPointAtEvery == 0)
+            {
+                recentRoad = ObjectPoolManager.Instance.SpawnObject(ControlPointPrefab as GameObject);
+            }
+            else
             // Randomizing building of the road
             // If case will be true, we will add turn
             // else we will add straight road
@@ -122,9 +140,9 @@ public class GameManager : MonoBehaviour
                 // Adding turn
                 case true:
                     // Setting boolean variable to true 
-                    isPreviousRoadSame = true;
+                    isPreviousTurnTheSame = true;
                     // While we won't generate distinctive road, we won't exit the cycle
-                    while (isPreviousRoadSame)
+                    while (isPreviousTurnTheSame)
                     {
                         // Generating random index
                         randomIndex = Random.Range(0, TurnPrefabsList.Count);
@@ -132,7 +150,7 @@ public class GameManager : MonoBehaviour
                         if ( turnCheckList.Count <= 0 )
                         {
                             // If so, setting variable to false
-                            isPreviousRoadSame = false;
+                            isPreviousTurnTheSame = false;
                         }
                         else
                         {
@@ -141,7 +159,7 @@ public class GameManager : MonoBehaviour
                             if (turnCheckList[turnCheckList.Count - 1].GetComponent<RoadScript>().RoadType
                                 != TurnPrefabsList[randomIndex].GetComponent<RoadScript>().RoadType)
                             {
-                                isPreviousRoadSame = false;
+                                isPreviousTurnTheSame = false;
                             }
                         }
                     }
