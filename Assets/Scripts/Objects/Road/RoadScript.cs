@@ -70,6 +70,14 @@ public class RoadScript : MonoBehaviour
         {
             // Setting new point of rotation for our player
             other.GetComponent<PlayerScript>().SetTurnPoint(JointPosition, JointRotation);
+            // Checking road type
+            switch (RoadType)
+            {
+                // If it is finish, then inform gameManager about this
+                case RoadTypes.Finish:
+                    GameManager.Instance.LevelComplete();
+                    break;
+            }
         }
     }
 

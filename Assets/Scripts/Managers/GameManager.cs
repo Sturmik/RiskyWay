@@ -83,12 +83,21 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Methods
+
+    /// <summary>
+    /// Method which will generate new level
+    /// </summary>
+    public void LevelComplete()
+    {
+        RoadQuantToGenerate += 1;
+        GenerateLevel(RoadQuantToGenerate);
+    }
     
     /// <summary>
     /// Generates level
     /// </summary>
     /// <param name="numberOfRoads">Number of roads to create</param>
-    public void GenerateLevel(int numberOfRoads)
+    private void GenerateLevel(int numberOfRoads)
     {
         // Checking if the data is valid
         if (numberOfRoads <= 0 
@@ -103,6 +112,11 @@ public class GameManager : MonoBehaviour
         if (CheckGivenRoads() == false)
         {
             return;
+        }
+        // Disabling previous roads
+        for (int i = 0; i < _recentLevelRoads.Count; i++)
+        {
+            _recentLevelRoads[i].SetActive(false);
         }
         // Clearing previous objects
         _recentLevelRoads.Clear();
@@ -189,7 +203,7 @@ public class GameManager : MonoBehaviour
         // Getting rotation  of the previous road joint to adjust our recent road to it
         recentRoad.transform.rotation = _recentLevelRoads[_recentLevelRoads.Count - 1].GetComponent<RoadScript>().JointRotation;
         // Adding object to the list
-        _recentLevelRoads.Add(FinishRoadPrefab);
+        _recentLevelRoads.Add(recentRoad);
     }
 
     /// <summary>

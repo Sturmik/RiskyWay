@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 1014450346}
+  RoadQuantToGenerate: 1
   StartRoadPrefab: {fileID: 5586668634383678729, guid: 49ca7718f39ce314881f69ef55b53586,
     type: 3}
   TurnPrefabsList:
@@ -160,6 +161,9 @@ MonoBehaviour:
   - {fileID: 1478891081033766277, guid: 887a39d7af2a7bc41b57e9411926d239, type: 3}
   - {fileID: 592795679089004682, guid: 747670af581f0a34a8ecef3d0a840805, type: 3}
   - {fileID: 2609378610360260068, guid: 28f777b9eb485c2489dfef00803c21ad, type: 3}
+  ControlPointPrefab: {fileID: 5542285939695692876, guid: f122a6facfe8a144ba90014ea3052ffd,
+    type: 3}
+  SpawnControlPointAtEvery: 10
   FinishRoadPrefab: {fileID: 3160113922471831447, guid: 9e9c60af8916dda4fbfe172c8fe7a654,
     type: 3}
 --- !u!4 &109305823
@@ -439,7 +443,7 @@ PrefabInstance:
     - target: {fileID: 7717408860819202828, guid: 75b947091f73093498b750046d956d20,
         type: 3}
       propertyPath: AfterHitMoveTimeout
-      value: 2
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 7717408860819202828, guid: 75b947091f73093498b750046d956d20,
         type: 3}
